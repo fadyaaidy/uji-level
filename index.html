@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Galerinya Fany — Handmade Drawings & Keychains</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- Dekorasi bunga di kiri & kanan (fixed) -->
+<div class="side-garden left"><img src="images/decorations/side-garden.svg" style="width:100%;height:100%" alt=""></div>
+<div class="side-garden right"><img src="images/decorations/side-garden.svg" style="width:100%;height:100%" alt=""></div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.svg" width="40" height="40" alt="logo">
+      <div>
+        <div class="logo-text">Galerinya Fany</div>
+        <div class="logo-sub">handmade · with love</div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <button class="nav-link" data-scroll="home">Home</button>
+      <button class="nav-link" data-scroll="about">About</button>
+      <button class="nav-link" data-scroll="products">Products</button>
+      <button class="nav-link" data-scroll="palettes">Palettes</button>
+      <button class="nav-link" data-scroll="order">How to Order</button>
+      <button class="nav-link" data-scroll="contact">Contact</button>
+    </div>
+
+    <div class="nav-actions">
+      <div style="position:relative">
+        <button class="icon-btn" id="search-btn" aria-label="Cari palette"></button>
+        <div class="search-pop" id="search-pop" style="display:none" onclick="event.stopPropagation()">
+          <input type="text" id="search-input" placeholder="Cari color palette… (mis. pastel, biru)"/>
+          <div class="search-pop-hint">Tekan Enter untuk cari di Color Palettes</div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" id="fav-btn" aria-label="Favorit" style="position:relative">
+        <!-- diisi JS -->
+        <span class="badge" id="fav-badge" style="display:none">0</span>
+      </a>
+      <button class="btn btn-primary btn-sm" data-scroll="order">Pesan Sekarang</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="home" class="section hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow" id="hero-eyebrow"></span>
+        <h1>Gambar tangan &amp; gantungan kunci, <em>dari hati Bunda.</em></h1>
+        <p class="hero-lede">Tiap garis dan goresan dibuat Bunda satu per satu di studio kecilnya. Pilih gambarnya, padu-padankan dengan color palette favoritmu, lalu kirim ke WhatsApp — secepat itu.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" data-scroll="products">Lihat Koleksi <span id="ico-arrow-right"></span></button>
+          <button class="btn btn-ghost" data-scroll="order"><span id="ico-gift"></span> Cara Pesan</button>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><div class="num">5<span style="font-size:18px">+</span></div><div class="lbl">Tahun melukis</div></div>
+          <div class="hero-meta-item"><div class="num">800<span style="font-size:18px">+</span></div><div class="lbl">Pesanan selesai</div></div>
+          <div class="hero-meta-item"><div class="num">4.9<span style="font-size:18px">★</span></div><div class="lbl">Rating Shopee</div></div>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-tile hero-tile-1"><img src="images/products/mom-daughter.svg" alt="Mom &amp; Daughter Portrait" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="hero-tile hero-tile-2"><img src="images/products/family-portrait.svg" alt="Family Portrait" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="hero-tile hero-tile-3"><img src="images/products/bunny-keychain.svg" alt="Bunny Keychain" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="hero-tile hero-tile-4"><img src="images/products/octopus-keychain.svg" alt="Octopus Keychain" style="width:100%;height:100%;object-fit:cover"></div>
+        <div class="hero-sparkle s1">✦</div>
+        <div class="hero-sparkle s2">✦</div>
+        <div style="position:absolute;top:20px;right:-10px;background:#FFFBF5;border-radius:999px;padding:6px 14px;font-family:var(--font-script);font-size:22px;color:#C66B85;box-shadow:var(--shadow-md);border:1px solid #F5C9D4;transform:rotate(8deg);z-index:5">made with love</div>
+        <div style="position:absolute;bottom:12px;left:-16px;background:#FFFBF5;border-radius:12px;padding:8px 12px;font-family:var(--font-sans);font-size:11px;color:#4C2A36;box-shadow:var(--shadow-md);border:1px solid var(--line);transform:rotate(-4deg);z-index:5;font-weight:600;letter-spacing:0.08em">✦ HANDDRAWN BY BUNDA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section id="about" class="section">
+  <div class="wrap">
+    <div class="about-card">
+      <div class="about-text">
+        <div class="eyebrow">Tentang Bunda</div>
+        <h2>Halo, aku <em>Bunda Fany</em> —<br/>tukang gambar di studio kecil ini.</h2>
+        <p>Mulai dari hobi iseng waktu nemenin anak bobok siang, sketsa-sketsa kecilku lama-lama jadi pesanan dari tetangga, lalu dari teman tetangga, sampai akhirnya berani buka "warung gambar" sendiri di Bekasi.</p>
+        <p>Setiap karya aku kerjain dari rumah, di meja kayu dekat jendela dapur — biar bisa sambil dengar anak main. Pakai cat air, tinta, sama crayon yang itu-itu aja, tapi hasilnya nggak pernah sama, karena tiap pesanan punya cerita yang beda.</p>
+        <p>Aku percaya hadiah yang paling diingat itu yang dibuat dengan tangan dan waktu. Kalau kamu lagi bingung mau kasih apa untuk orang yang spesial, ngobrol aja dulu sama aku di WhatsApp — kita rancang bareng.</p>
+        <div class="about-signature">— Bunda Fany</div>
+      </div>
+      <div class="about-info">
+        <h3>Workshop &amp; Kontak</h3>
+        <div class="info-row">
+          <div class="info-icon" id="ico-pin"></div>
+          <div><div class="info-label">Alamat Workshop</div><div class="info-value">Jl. Mawar No. 12, RT 03/RW 05</div><div class="info-value" style="color:var(--text-soft);font-weight:400">Bekasi Timur, 17113</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" id="ico-wa-about"></div>
+          <div><div class="info-label">WhatsApp Bunda</div><div class="info-value">+62 812-3456-7890</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" id="ico-mail-about"></div>
+          <div><div class="info-label">Email</div><div class="info-value">halo@galerinya-fany.id</div></div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" id="ico-clock-about"></div>
+          <div><div class="info-label">Jam Operasional</div><div class="info-value">Senin–Jumat · 09.00–17.00</div><div class="info-value" style="color:var(--text-soft);font-weight:400">Sabtu · 10.00–15.00</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PRODUCTS ═══════════════════ -->
+<section id="products" class="section">
+  <div class="wrap">
+    <div class="products-head">
+      <div class="left">
+        <div class="eyebrow">Our Products</div>
+        <h2 class="section-title">Koleksi <em>gambar &amp; gantungan</em></h2>
+        <p class="section-sub" style="margin:0">Klik salah satu untuk lihat detail, durasi pengerjaan, dan rekomendasi color palette.</p>
+      </div>
+      <div class="tab-pills">
+        <button class="tab-pill active" data-cat="all">Semua</button>
+        <button class="tab-pill" data-cat="drawing">Gambar</button>
+        <button class="tab-pill" data-cat="keychain">Gantungan Kunci</button>
+      </div>
+    </div>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PALETTES ═══════════════════ -->
+<section id="palettes" class="section">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:24px">
+      <div class="eyebrow">Color Palette Recommendations</div>
+      <h2 class="section-title">Pilih <em>warna</em> kesukaanmu</h2>
+      <p class="section-sub">Setiap gambar bisa dibuat dengan palette berbeda. Simpan favoritmu — nanti otomatis terkirim bareng pesanan ke WhatsApp.</p>
+    </div>
+    <div class="search-row">
+      <span id="ico-search-palette"></span>
+      <input type="text" id="palette-search" placeholder="Cari palette… (mis. pastel, biru, hangat)"/>
+      <button type="button" class="btn btn-ghost btn-sm" id="reset-palette-search" style="display:none" onclick="resetPaletteSearch()">
+        <span id="ico-x-reset"></span> Reset
+      </button>
+    </div>
+    <div id="palette-empty" style="display:none;text-align:center;color:var(--text-soft);padding:40px 0">Tidak ada palette yang cocok. Coba kata kunci lain.</div>
+    <div class="palette-grid" id="palette-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ HOW TO ORDER ═══════════════════ -->
+<section id="order" class="section">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:56px">
+      <div class="eyebrow">How to Order</div>
+      <h2 class="section-title">Cara <em>memesan</em></h2>
+      <p class="section-sub">Empat langkah simpel — semua selesai di satu chat WhatsApp.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num" id="ico-step1"><span>1</span></div>
+        <h3>Pilih gambar</h3>
+        <p>Buka koleksi di atas, pilih gambar atau gantungan favoritmu. Klik heart kalau mau simpan dulu.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num" id="ico-step2"><span>2</span></div>
+        <h3>Pilih palette</h3>
+        <p>Padukan dengan color palette yang kamu suka. Bisa simpan beberapa untuk dibandingkan.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num" id="ico-step3"><span>3</span></div>
+        <h3>Cek Favorite</h3>
+        <p>Semua yang kamu simpan tersusun rapi di halaman Favorite — siap dikirim ke Bunda.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num" id="ico-step4"><span>4</span></div>
+        <h3>Kirim WhatsApp</h3>
+        <p>Tekan tombol "Kirim ke WhatsApp" — pesanmu otomatis terisi, Bunda langsung balas dan mulai gambar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact" class="section">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:48px">
+      <div class="eyebrow">Get in Touch</div>
+      <h2 class="section-title"><em>Mampir</em> ke studio Bunda</h2>
+      <p class="section-sub">Bunda balas chat paling cepat di jam kerja. Untuk pertanyaan umum, cek dulu FAQ di bawah.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-main">
+        <div class="eyebrow">Customer Care</div>
+        <h2>Kita ngobrol dulu, <em>baru gambar.</em></h2>
+        <p>Pilih cara paling nyaman buat hubungi Bunda. Konsultasi awal gratis — cerita aja rencanamu, nanti dibantu pilih ukuran, palette, dan estimasi waktu.</p>
+        <div class="contact-blocks">
+          <div class="contact-block"><div class="info-icon" id="ico-c-wa"></div><h4>WhatsApp</h4><p><strong>+62 812-3456-7890</strong><br/>Respon &lt; 2 jam (jam kerja)</p></div>
+          <div class="contact-block"><div class="info-icon" id="ico-c-ig"></div><h4>Instagram</h4><p><strong>@galerinya.fany</strong><br/>DM untuk preview portfolio</p></div>
+          <div class="contact-block"><div class="info-icon" id="ico-c-mail"></div><h4>Email</h4><p><strong>halo@galerinya-fany.id</strong><br/>Untuk pesanan grosir / kantor</p></div>
+          <div class="contact-block"><div class="info-icon" id="ico-c-pin"></div><h4>Workshop</h4><p><strong>Jl. Mawar No. 12</strong><br/>Bekasi Timur, 17113</p></div>
+        </div>
+        <div class="contact-hours">
+          <h4 id="hours-title"></h4>
+          <div id="hours-list"></div>
+        </div>
+      </div>
+      <div class="contact-side">
+        <div class="contact-map"><img src="images/decorations/map.svg" style="width:100%;height:100%;object-fit:cover" alt="Peta Workshop Bunda"></div>
+        <div class="contact-faq">
+          <h3>Pertanyaan Umum</h3>
+          <div id="faq-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div style="position:absolute;top:0;left:0;right:0"><img src="images/decorations/floral-border.svg" style="width:100%;display:block" alt=""></div>
+  <div class="wrap" style="position:relative">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="cursor:default">
+          <img src="images/logo.svg" width="42" height="42" alt="logo">
+          <div><div class="logo-text">Galerinya Fany</div><div class="logo-sub">handmade · with love</div></div>
+        </div>
+        <p class="footer-tag">Studio gambar tangan dan kerajinan kecil, dikerjakan langsung oleh Bunda di Bekasi. Setiap pesanan dibuat satu per satu — tidak ada yang sama persis.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" id="ft-ig"></a>
+          <a href="#" aria-label="TikTok" id="ft-tt"></a>
+          <a href="#" aria-label="Shopee" id="ft-sp"></a>
+          <a href="#" aria-label="WhatsApp" id="ft-wa"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Galerinya</h4>
+        <ul>
+          <li><a href="#about" class="scroll-link">Tentang Bunda</a></li>
+          <li><a href="#products" class="scroll-link">Products</a></li>
+          <li><a href="#palettes" class="scroll-link">Color Palettes</a></li>
+          <li><a href="favorites.html">Favorites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Layanan</h4>
+        <ul>
+          <li><a href="#order" class="scroll-link">Cara Pesan</a></li>
+          <li><a href="#">Custom Order</a></li>
+          <li><a href="#">Wedding Gift</a></li>
+          <li><a href="#">Birthday Package</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bantuan</h4>
+        <ul>
+          <li><a href="#contact" class="scroll-link">Kontak &amp; FAQ</a></li>
+          <li><a href="#contact" class="scroll-link">Cara Pembayaran</a></li>
+          <li><a href="#">Pengiriman</a></li>
+          <li><a href="#">Kebijakan Revisi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Galerinya Fany · Made with 🤍 in Bekasi</div>
+      <div>Workshop: Jl. Mawar No. 12, Bekasi Timur</div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ──────────────────────────────────────────────────────────
+//  Halaman Utama (Home) — index.html
+// ──────────────────────────────────────────────────────────
+
+var currentCategory = 'all';
+
+// ── Init semua elemen saat halaman selesai dimuat ──
+document.addEventListener('DOMContentLoaded', function () {
+  initNavCommon();
+  injectIcons();
+  renderProductGrid();
+  renderPaletteGrid();
+  renderFAQ();
+  renderHours();
+  initScrollLinks();
+  initCategoryTabs();
+  initPaletteSearch();
+  initScrollActiveTracking();
+  handleURLParams();
+});
+
+// Isi icon ke elemen tertentu
+function injectIcons() {
+  document.getElementById('hero-eyebrow').innerHTML  = icon('sparkle',12) + ' Studio handmade · est. 2021';
+  document.getElementById('ico-arrow-right').innerHTML = icon('arrow-right',16);
+  document.getElementById('ico-gift').innerHTML       = icon('gift',16);
+  document.getElementById('ico-pin').innerHTML        = icon('pin',18);
+  document.getElementById('ico-wa-about').innerHTML   = icon('whatsapp',18);
+  document.getElementById('ico-mail-about').innerHTML = icon('mail',18);
+  document.getElementById('ico-clock-about').innerHTML = icon('clock',18);
+  document.getElementById('ico-c-wa').innerHTML       = icon('whatsapp',18);
+  document.getElementById('ico-c-ig').innerHTML       = icon('instagram',18);
+  document.getElementById('ico-c-mail').innerHTML     = icon('mail',18);
+  document.getElementById('ico-c-pin').innerHTML      = icon('pin',18);
+  document.getElementById('ico-search-palette').innerHTML = icon('search',18);
+  document.getElementById('ico-x-reset').innerHTML    = icon('x',14);
+  document.getElementById('ico-step1').innerHTML      = icon('paint',28) + '<span>1</span>';
+  document.getElementById('ico-step2').innerHTML      = icon('palette',28) + '<span>2</span>';
+  document.getElementById('ico-step3').innerHTML      = icon('heart',28) + '<span>3</span>';
+  document.getElementById('ico-step4').innerHTML      = icon('whatsapp',28) + '<span>4</span>';
+  document.getElementById('ft-ig').innerHTML = icon('instagram',18);
+  document.getElementById('ft-tt').innerHTML = icon('tiktok',18);
+  document.getElementById('ft-sp').innerHTML = icon('shopee',18);
+  document.getElementById('ft-wa').innerHTML = icon('whatsapp',18);
+  document.getElementById('hours-title').innerHTML    = icon('clock',16) + ' Jam Operasional';
+}
+
+// ── Smooth scroll: tombol navbar dan footer ──
+function initScrollLinks() {
+  // Navbar buttons (data-scroll)
+  document.querySelectorAll('[data-scroll]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var sec = document.getElementById(el.dataset.scroll);
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+  // Footer links (href="#section")
+  document.querySelectorAll('a.scroll-link').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var id = a.getAttribute('href').replace('#','');
+      var sec = document.getElementById(id);
+      if (sec) { e.preventDefault(); sec.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+  // Search input enter key
+  var si = document.getElementById('search-input');
+  if (si) si.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      var q = si.value.trim();
+      document.getElementById('search-pop').style.display = 'none';
+      if (q) {
+        document.getElementById('palette-search').value = q;
+        renderPaletteGrid();
+      }
+      document.getElementById('palettes').scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+}
+
+// ── Active nav tracking saat scroll ──
+function initScrollActiveTracking() {
+  var sections = ['home','about','products','palettes','order','contact'];
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.nav-link').forEach(function(btn) {
+          btn.classList.toggle('active', btn.dataset.scroll === entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+}
+
+// ── Handle URL hash & query params ──
+function handleURLParams() {
+  // ?q=searchterm — dari search di halaman lain
+  var params = new URLSearchParams(window.location.search);
+  var q = params.get('q');
+  if (q) {
+    var inp = document.getElementById('palette-search');
+    inp.value = q;
+    renderPaletteGrid();
+    setTimeout(function() {
+      document.getElementById('palettes').scrollIntoView({ behavior: 'smooth' });
+    }, 200);
+  }
+  // #section — dari link di halaman lain
+  if (window.location.hash) {
+    var id = window.location.hash.replace('#','');
+    setTimeout(function() {
+      var sec = document.getElementById(id);
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+}
+
+// ──────────────────────────────────────────────────────────
+//  PRODUCT GRID
+// ──────────────────────────────────────────────────────────
+function renderProductGrid() {
+  var list = currentCategory === 'all' ? PRODUCTS : PRODUCTS.filter(function(p){ return p.category === currentCategory; });
+  var favs = loadFavs();
+  var html = list.map(function(p) {
+    var isFav = favs.products.indexOf(p.id) !== -1;
+    return '<article class="product-card" onclick="window.location.href=\'product.html?id=' + p.id + '\'">' +
+      '<div class="product-img">' +
+        productArtSVG(p) +
+        '<div class="product-tag">' + p.tag + '</div>' +
+        '<button class="product-fav' + (isFav ? ' is-fav' : '') + '" onclick="toggleProductFavHere(event,\'' + p.id + '\')" aria-label="Favorit">' +
+          icon(isFav ? 'heart-fill' : 'heart', 18) +
+        '</button>' +
+      '</div>' +
+      '<div class="product-body">' +
+        '<h3 class="product-title">' + p.title + '</h3>' +
+        '<div class="product-meta">' +
+          '<span class="product-price">' + p.price + '</span>' +
+          '<span class="product-duration">' + icon('clock',12) + ' ' + p.duration + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+  document.getElementById('product-grid').innerHTML = html;
+}
+
+function toggleProductFavHere(e, id) {
+  e.stopPropagation();
+  var isNow = toggleFav('products', id);
+  showToast(isNow ? '❤️ Ditambah ke Favorite!' : 'Dihapus dari Favorite.');
+  renderProductGrid();
+  updateFavBadge();
+}
+
+// ── Category tabs ──
+function initCategoryTabs() {
+  document.querySelectorAll('.tab-pill').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-pill').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentCategory = btn.dataset.cat;
+      renderProductGrid();
+    });
+  });
+}
+
+// ──────────────────────────────────────────────────────────
+//  PALETTE GRID
+// ──────────────────────────────────────────────────────────
+function renderPaletteGrid() {
+  var q     = document.getElementById('palette-search').value.trim().toLowerCase();
+  var list  = q ? PALETTES.filter(function(p){
+    return p.name.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q) || p.colors.some(function(c){ return c.toLowerCase().includes(q); });
+  }) : PALETTES;
+
+  var resetBtn = document.getElementById('reset-palette-search');
+  resetBtn.style.display = q ? 'inline-flex' : 'none';
+
+  var emptyEl = document.getElementById('palette-empty');
+  var gridEl  = document.getElementById('palette-grid');
+
+  if (list.length === 0) {
+    emptyEl.style.display = 'block';
+    gridEl.innerHTML = '';
+    return;
+  }
+  emptyEl.style.display = 'none';
+
+  var favs = loadFavs();
+  gridEl.innerHTML = list.map(function(p) {
+    var isFav    = favs.palettes.indexOf(p.id) !== -1;
+    var swatches = p.colors.map(function(c){ return '<div class="palette-swatch" style="background:' + c + '"></div>'; }).join('');
+    return '<div class="palette-card">' +
+      '<button class="palette-fav' + (isFav ? ' is-fav' : '') + '" onclick="togglePaletteFavHere(event,\'' + p.id + '\')" aria-label="Simpan palette">' +
+        icon(isFav ? 'heart-fill' : 'heart', 18) +
+      '</button>' +
+      '<div class="palette-swatches">' + swatches + '</div>' +
+      '<div class="palette-name">' + p.name + '</div>' +
+      '<div class="palette-tag">' + p.tag + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function togglePaletteFavHere(e, id) {
+  e.stopPropagation();
+  var isNow = toggleFav('palettes', id);
+  showToast(isNow ? '🎨 Palette disimpan!' : 'Palette dihapus dari Favorite.');
+  renderPaletteGrid();
+  updateFavBadge();
+}
+
+function initPaletteSearch() {
+  document.getElementById('palette-search').addEventListener('input', renderPaletteGrid);
+}
+
+function resetPaletteSearch() {
+  document.getElementById('palette-search').value = '';
+  renderPaletteGrid();
+}
+
+// ──────────────────────────────────────────────────────────
+//  FAQ & HOURS
+// ──────────────────────────────────────────────────────────
+function renderFAQ() {
+  var html = FAQS.map(function(f, i) {
+    return '<div class="faq-item" onclick="toggleFAQ(this)">' +
+      '<div class="faq-q"><span>' + f.q + '</span>' + icon('plus',16) + '</div>' +
+      '<div class="faq-a"><div style="padding-top:6px">' + f.a + '</div></div>' +
+    '</div>';
+  }).join('');
+  document.getElementById('faq-list').innerHTML = html;
+  // Buka item pertama
+  var first = document.querySelector('.faq-item');
+  if (first) first.classList.add('open');
+}
+
+function toggleFAQ(item) {
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el){ el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+function renderHours() {
+  document.getElementById('hours-list').innerHTML = HOURS.map(function(h) {
+    return '<div class="hours-row' + (h.closed ? ' closed' : '') + '">' +
+      '<span class="day">' + h.day + '</span>' +
+      '<span class="time">' + h.time + '</span>' +
+    '</div>';
+  }).join('');
+}
+</script>
+</body>
+</html>

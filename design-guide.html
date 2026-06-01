@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Design Guide — Galerinya Fany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS (sama persis dengan styles.css) ── */
+:root {
+  --bg: #FFF6F8; --bg-2: #FBE7EE; --bg-3: #F7D8E1; --cream: #FFFBF5;
+  --primary: #E89BAE; --primary-deep: #C66B85; --primary-soft: #F5C9D4;
+  --accent: #B97A8E;
+  --text: #4C2A36; --text-soft: #8C6271; --text-mute: #B894A2;
+  --line: rgba(184,120,140,0.18); --line-soft: rgba(184,120,140,0.10);
+  --shadow-sm: 0 1px 2px rgba(140,70,90,0.06);
+  --shadow-md: 0 8px 24px -10px rgba(140,70,90,0.18), 0 2px 6px rgba(140,70,90,0.06);
+  --shadow-lg: 0 24px 48px -20px rgba(140,70,90,0.28), 0 4px 12px rgba(140,70,90,0.08);
+  --radius: 14px; --radius-lg: 22px; --radius-pill: 999px;
+  --font-script: 'Caveat', cursive;
+  --font-serif:  'Cormorant Garamond', serif;
+  --font-sans:   'Nunito', sans-serif;
+}
+*  { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); color: var(--text); background: #f0f0f0; }
+
+/* ── LAYOUT GUIDE ── */
+.guide-header {
+  background: var(--primary-deep); color: #fff;
+  padding: 32px 48px; display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.guide-header h1 { font-family: var(--font-script); font-size: 36px; font-weight: 700; }
+.guide-header p  { font-size: 13px; opacity: 0.75; margin-top: 4px; }
+.guide-nav {
+  position: sticky; top: 0; z-index: 10;
+  background: #fff; border-bottom: 1px solid #e0e0e0;
+  display: flex; gap: 0; overflow-x: auto; padding: 0 32px;
+}
+.guide-nav a {
+  display: inline-block; padding: 14px 18px;
+  font-size: 13px; font-weight: 600; color: #666;
+  text-decoration: none; white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+.guide-nav a:hover { color: var(--primary-deep); border-color: var(--primary-soft); }
+.guide-body { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; }
+
+.section-head {
+  display: flex; align-items: baseline; gap: 16px;
+  border-bottom: 2px solid #e0e0e0; padding-bottom: 12px;
+  margin: 64px 0 32px;
+}
+.section-head:first-child { margin-top: 0; }
+.section-head h2 { font-family: var(--font-serif); font-size: 28px; font-weight: 600; color: #222; }
+.section-head span { font-size: 12px; color: #999; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.row  { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; align-items: flex-start; }
+.col  { flex: 1; min-width: 200px; }
+
+/* label di bawah setiap elemen */
+.label {
+  margin-top: 8px; font-size: 11px; color: #999;
+  font-family: 'Courier New', monospace; text-align: center;
+}
+
+/* ── COLOR SWATCHES ── */
+.swatch-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.swatch {
+  width: 80px;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.swatch-color { height: 60px; }
+.swatch-info  { background: #fff; padding: 6px 8px; }
+.swatch-name  { font-size: 10px; font-weight: 700; color: #333; }
+.swatch-hex   { font-size: 10px; color: #888; font-family: monospace; }
+
+/* ── TYPOGRAPHY ── */
+.type-specimen { background: var(--cream); border-radius: var(--radius); padding: 24px 28px; border: 1px solid var(--line); margin-bottom: 12px; }
+
+/* ── BUTTONS ── */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: var(--radius-pill); font-family: var(--font-sans); font-weight: 600; font-size: 14px; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; letter-spacing: 0.01em; }
+.btn-primary { background: var(--primary-deep); color: #fff; box-shadow: 0 8px 20px -6px rgba(198,107,133,0.5); }
+.btn-primary:hover { background: #B05A74; transform: translateY(-1px); }
+.btn-ghost { background: rgba(255,255,255,0.7); color: var(--primary-deep); border-color: var(--primary-soft); }
+.btn-ghost:hover { background: #fff; border-color: var(--primary); }
+.btn-wa { background: #25D366; color: #fff; }
+.btn-wa:hover { background: #1FB857; transform: translateY(-1px); }
+.btn-sm { padding: 9px 16px; font-size: 13px; }
+.btn-outline { background: transparent; color: var(--text-soft); border-color: var(--line); }
+.btn-outline:hover { border-color: var(--primary-soft); color: var(--primary-deep); }
+
+/* ── BADGES & TAGS ── */
+.badge-pill  { display: inline-block; padding: 4px 12px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.badge-pink  { background: var(--primary-soft); color: var(--primary-deep); }
+.badge-green { background: #E8F3E0; color: #5A8E5C; }
+.badge-cream { background: var(--cream); color: var(--text-soft); border: 1px solid var(--line); }
+.badge-dark  { background: var(--text); color: var(--cream); }
+
+/* ── CARD ── */
+.card {
+  background: var(--cream); border-radius: var(--radius-lg);
+  border: 1px solid var(--line-soft); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: all 0.25s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary-soft); }
+.card-img { aspect-ratio: 1/1; background: var(--bg-2); overflow: hidden; }
+.card-body { padding: 18px 20px 22px; }
+.card-title { font-family: var(--font-serif); font-size: 21px; font-weight: 600; color: var(--text); }
+.card-meta  { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+.card-price { font-family: var(--font-serif); font-size: 18px; font-weight: 600; color: var(--primary-deep); }
+.card-dur   { font-size: 12px; color: var(--text-soft); }
+
+/* ── PALETTE CARD ── */
+.pal-card { background: var(--cream); border-radius: var(--radius); padding: 16px; border: 1px solid var(--line-soft); }
+.pal-swatches { display: flex; border-radius: 10px; overflow: hidden; height: 60px; box-shadow: inset 0 0 0 1px var(--line-soft); }
+.pal-swatch { flex: 1; }
+.pal-name { font-family: var(--font-serif); font-size: 17px; font-weight: 600; margin: 12px 0 4px; color: var(--text); }
+.pal-tag  { font-size: 12px; color: var(--text-soft); }
+
+/* ── INPUT ── */
+.inp-group { display: flex; flex-direction: column; gap: 6px; }
+.inp-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mute); font-weight: 600; }
+input[type=text], textarea, select {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid var(--line); border-radius: var(--radius);
+  background: var(--bg); font-family: var(--font-sans); font-size: 14px; color: var(--text);
+  outline: none; transition: border-color 0.15s;
+}
+input:focus, textarea:focus { border-color: var(--primary-deep); background: #fff; }
+
+/* ── ICON GRID ── */
+.icon-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.icon-item {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px 12px; width: 90px; cursor: default;
+  transition: all 0.15s;
+}
+.icon-item:hover { border-color: var(--primary-soft); box-shadow: var(--shadow-sm); }
+.icon-item span { font-size: 10px; color: var(--text-mute); text-align: center; }
+
+/* ── SPACING ── */
+.spacing-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.sp-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.sp-box  { background: var(--primary-soft); border-radius: 4px; }
+.sp-lbl  { font-size: 11px; color: #666; font-family: monospace; }
+
+/* ── SHADOW ── */
+.shadow-demo { background: var(--cream); border-radius: var(--radius); padding: 24px 20px; text-align: center; }
+
+/* ── RADIUS ── */
+.radius-demo { background: var(--primary-soft); width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--primary-deep); font-weight: 600; }
+
+/* ── PRODUCT ART GRID ── */
+.art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+.art-item { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 1/1; }
+
+/* ── FAQ ITEM ── */
+.faq-item { border-bottom: 1px dashed var(--line); padding: 14px 0; cursor: pointer; }
+.faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 14px; }
+.faq-q svg { color: var(--primary-deep); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.25s; font-size: 13px; color: var(--text-soft); }
+.faq-item.open .faq-a { max-height: 200px; margin-top: 8px; }
+.faq-item.open .faq-q svg { transform: rotate(45deg); }
+
+/* ── STEP CARD ── */
+.step-card { background: var(--cream); border: 1px solid var(--line-soft); border-radius: var(--radius-lg); padding: 28px 22px; text-align: center; }
+.step-num  { width: 76px; height: 76px; margin: 0 auto 18px; border-radius: 50%; background: var(--bg); border: 6px solid var(--bg); box-shadow: 0 0 0 1px var(--primary-soft); color: var(--primary-deep); display: inline-flex; align-items: center; justify-content: center; position: relative; }
+.step-num .badge-num { position: absolute; bottom: -8px; right: -8px; width: 28px; height: 28px; background: var(--primary-deep); color: #fff; border-radius: 50%; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 3px solid var(--cream); font-family: var(--font-serif); font-weight: 600; }
+
+/* ── ABOUT CARD ── */
+.about-card { background: linear-gradient(160deg, var(--cream) 0%, var(--bg-2) 100%); border: 1px solid var(--line-soft); border-radius: 32px; padding: 40px; position: relative; overflow: hidden; }
+.about-card::before { content: '"'; position: absolute; top: -40px; right: 20px; font-family: var(--font-serif); font-size: 220px; color: rgba(198,107,133,0.08); font-style: italic; line-height: 1; }
+
+/* ── INFO ROW ── */
+.info-row  { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px dashed var(--line); align-items: flex-start; }
+.info-row:last-child { border-bottom: none; }
+.info-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--primary-soft); color: var(--primary-deep); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.info-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 2px; }
+.info-value { font-size: 14px; color: var(--text); font-weight: 500; }
+
+/* ── HERO EYEBROW ── */
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255,255,255,0.7); border: 1px solid var(--primary-soft); border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary-deep); }
+
+/* ── CHECKOUT BAR ── */
+.checkout-bar { background: var(--cream); border: 1px solid var(--primary-soft); border-radius: var(--radius-lg); padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-lg); }
+.checkout-bar .count { font-family: var(--font-serif); font-size: 20px; font-weight: 600; }
+.checkout-bar .lbl   { font-size: 12px; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── SEARCH ROW ── */
+.search-row { display: flex; gap: 12px; align-items: center; background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius-pill); padding: 4px 4px 4px 18px; box-shadow: var(--shadow-sm); }
+.search-row input { flex: 1; border: none; outline: none; padding: 12px 6px; background: transparent; font-family: inherit; font-size: 15px; color: var(--text); }
+
+/* ── TOAST ── */
+.toast-demo { background: var(--text); color: var(--cream); padding: 12px 22px; border-radius: var(--radius-pill); font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg); display: inline-block; }
+
+/* ── MODAL ── */
+.modal-demo { background: var(--cream); border-radius: 24px; padding: 32px; max-width: 400px; box-shadow: var(--shadow-lg); position: relative; border: 1px solid var(--line-soft); }
+.modal-demo h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+.modal-demo p  { font-size: 13px; color: var(--text-soft); margin-bottom: 16px; }
+
+/* ── TABS ── */
+.tab-pills { display: flex; gap: 8px; }
+.tab-pill { padding: 9px 18px; border-radius: var(--radius-pill); font-size: 13px; font-weight: 600; color: var(--text-soft); background: rgba(255,255,255,0.6); border: 1px solid var(--line); transition: all 0.15s; cursor: pointer; }
+.tab-pill:hover { color: var(--primary-deep); border-color: var(--primary-soft); }
+.tab-pill.active { background: var(--primary-deep); color: #fff; border-color: var(--primary-deep); }
+
+/* ── EYEBROW ── */
+.eyebrow { font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--primary-deep); font-weight: 600; }
+.section-title { font-family: var(--font-serif); font-weight: 500; font-size: 48px; line-height: 1.1; letter-spacing: -0.01em; color: var(--text); margin: 12px 0 16px; }
+.section-title em { font-family: var(--font-script); font-style: normal; color: var(--primary-deep); font-size: 1.25em; font-weight: 600; }
+.section-sub { font-size: 17px; color: var(--text-soft); max-width: 580px; }
+
+/* ── STAT CARD ── */
+.stat-card { background: var(--bg); border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 14px; }
+.stat-card .lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 2px; margin-top: 8px; }
+.stat-card .val { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="guide-header">
+  <div>
+    <h1>Galerinya Fany — Design Guide</h1>
+    <p>Style guide & komponen library · dipakai oleh index.html · product.html · favorites.html</p>
+  </div>
+  <div style="font-size:13px;opacity:0.7">
+    📁 File terkait: <code>styles.css</code> · <code>shared.js</code>
+  </div>
+</div>
+
+<!-- NAVIGASI CEPAT -->
+<nav class="guide-nav">
+  <a href="#sec-tokens">🎨 Tokens</a>
+  <a href="#sec-colors">Colors</a>
+  <a href="#sec-type">Typography</a>
+  <a href="#sec-spacing">Spacing</a>
+  <a href="#sec-icons">Icons</a>
+  <a href="#sec-buttons">Buttons</a>
+  <a href="#sec-inputs">Inputs</a>
+  <a href="#sec-cards">Cards</a>
+  <a href="#sec-palettes">Palettes</a>
+  <a href="#sec-art">Product Art</a>
+  <a href="#sec-components">Components</a>
+  <a href="#sec-pages">Page Layouts</a>
+</nav>
+
+<div class="guide-body">
+
+<!-- ══════════════ DESIGN TOKENS ══════════════ -->
+<div class="section-head" id="sec-tokens">
+  <h2>Design Tokens</h2>
+  <span>CSS Variables — :root</span>
+</div>
+<div style="background:var(--cream);border-radius:var(--radius);padding:24px;border:1px solid var(--line);font-family:monospace;font-size:13px;line-height:2;color:var(--text-soft)">
+  <div><span style="color:#C66B85">--bg</span>: #FFF6F8 &nbsp;&nbsp;<span style="color:#C66B85">--bg-2</span>: #FBE7EE &nbsp;&nbsp;<span style="color:#C66B85">--bg-3</span>: #F7D8E1 &nbsp;&nbsp;<span style="color:#C66B85">--cream</span>: #FFFBF5</div>
+  <div><span style="color:#C66B85">--primary</span>: #E89BAE &nbsp;&nbsp;<span style="color:#C66B85">--primary-deep</span>: #C66B85 &nbsp;&nbsp;<span style="color:#C66B85">--primary-soft</span>: #F5C9D4</div>
+  <div><span style="color:#C66B85">--text</span>: #4C2A36 &nbsp;&nbsp;<span style="color:#C66B85">--text-soft</span>: #8C6271 &nbsp;&nbsp;<span style="color:#C66B85">--text-mute</span>: #B894A2</div>
+  <div><span style="color:#C66B85">--radius</span>: 14px &nbsp;&nbsp;<span style="color:#C66B85">--radius-lg</span>: 22px &nbsp;&nbsp;<span style="color:#C66B85">--radius-pill</span>: 999px</div>
+  <div><span style="color:#C66B85">--font-script</span>: Caveat &nbsp;&nbsp;<span style="color:#C66B85">--font-serif</span>: Cormorant Garamond &nbsp;&nbsp;<span style="color:#C66B85">--font-sans</span>: Nunito</div>
+</div>
+
+<!-- ══════════════ COLORS ══════════════ -->
+<div class="section-head" id="sec-colors">
+  <h2>Colors</h2>
+  <span>Brand palette</span>
+</div>
+<div class="swatch-row">
+  <!-- Backgrounds -->
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FFF6F8"></div>
+    <div class="swatch-info"><div class="swatch-name">bg</div><div class="swatch-hex">#FFF6F8</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FBE7EE"></div>
+    <div class="swatch-info"><div class="swatch-name">bg-2</div><div class="swatch-hex">#FBE7EE</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F7D8E1"></div>
+    <div class="swatch-info"><div class="swatch-name">bg-3</div><div class="swatch-hex">#F7D8E1</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FFFBF5"></div>
+    <div class="swatch-info"><div class="swatch-name">cream</div><div class="swatch-hex">#FFFBF5</div></div>
+  </div>
+  <!-- Primary -->
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F5C9D4"></div>
+    <div class="swatch-info"><div class="swatch-name">primary-soft</div><div class="swatch-hex">#F5C9D4</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#E89BAE"></div>
+    <div class="swatch-info"><div class="swatch-name">primary</div><div class="swatch-hex">#E89BAE</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#C66B85"></div>
+    <div class="swatch-info"><div class="swatch-name">primary-deep</div><div class="swatch-hex">#C66B85</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#B97A8E"></div>
+    <div class="swatch-info"><div class="swatch-name">accent</div><div class="swatch-hex">#B97A8E</div></div>
+  </div>
+  <!-- Text -->
+  <div class="swatch">
+    <div class="swatch-color" style="background:#B894A2"></div>
+    <div class="swatch-info"><div class="swatch-name">text-mute</div><div class="swatch-hex">#B894A2</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#8C6271"></div>
+    <div class="swatch-info"><div class="swatch-name">text-soft</div><div class="swatch-hex">#8C6271</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#4C2A36"></div>
+    <div class="swatch-info"><div class="swatch-name">text</div><div class="swatch-hex">#4C2A36</div></div>
+  </div>
+  <!-- Accent green -->
+  <div class="swatch">
+    <div class="swatch-color" style="background:#8FBE7E"></div>
+    <div class="swatch-info"><div class="swatch-name">leaf green</div><div class="swatch-hex">#8FBE7E</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#25D366"></div>
+    <div class="swatch-info"><div class="swatch-name">whatsapp</div><div class="swatch-hex">#25D366</div></div>
+  </div>
+</div>
+
+<!-- ══════════════ TYPOGRAPHY ══════════════ -->
+<div class="section-head" id="sec-type">
+  <h2>Typography</h2>
+  <span>3 font families</span>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="type-specimen">
+      <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mute);margin-bottom:12px">SCRIPT — Caveat (handwriting)</div>
+      <div style="font-family:'Caveat',cursive;font-size:48px;font-weight:700;color:var(--primary-deep);line-height:1.1">dari hati Bunda</div>
+      <div style="font-family:'Caveat',cursive;font-size:32px;font-weight:600;color:var(--primary-deep);margin-top:8px">— Bunda Fany</div>
+      <div style="font-family:'Caveat',cursive;font-size:22px;font-weight:500;color:var(--text-soft);margin-top:4px">made with love</div>
+    </div>
+    <div class="label">--font-script · dipakai: logo, signature, aksen heading</div>
+  </div>
+  <div class="col">
+    <div class="type-specimen">
+      <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mute);margin-bottom:12px">SERIF — Cormorant Garamond</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:500;color:var(--text);line-height:1.1">Custom Family<br/><em>Portrait</em></div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--text);margin-top:8px">Halo, aku Bunda Fany</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--primary-deep);margin-top:4px">Rp 185.000 · Bestseller</div>
+    </div>
+    <div class="label">--font-serif · dipakai: heading, harga, judul kartu</div>
+  </div>
+  <div class="col">
+    <div class="type-specimen">
+      <div style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-mute);margin-bottom:12px">SANS — Nunito</div>
+      <div style="font-family:'Nunito',sans-serif;font-size:17px;font-weight:400;color:var(--text-soft);line-height:1.6">Tiap garis dan goresan dibuat Bunda satu per satu di studio kecilnya. Pilih gambarnya, padu-padankan dengan color palette favoritmu.</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-top:12px">Bold 600 — label, tombol</div>
+      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--primary-deep);font-weight:600;margin-top:4px">EYEBROW · UPPERCASE</div>
+    </div>
+    <div class="label">--font-sans · dipakai: body text, tombol, label</div>
+  </div>
+</div>
+
+<div style="background:var(--cream);border-radius:var(--radius);padding:24px;border:1px solid var(--line);margin-bottom:8px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+    <div>
+      <div class="eyebrow" style="margin-bottom:8px">eyebrow</div>
+      <code style="font-size:11px;color:#888">.eyebrow — 12px 600 0.22em caps</code>
+    </div>
+    <div>
+      <div class="section-title" style="font-size:28px;margin:0">Section <em>Title</em></div>
+      <code style="font-size:11px;color:#888">.section-title — serif 48px 500</code>
+    </div>
+    <div>
+      <div class="hero-eyebrow" style="display:inline-flex">✦ Studio handmade</div>
+      <code style="font-size:11px;color:#888;display:block;margin-top:8px">.hero-eyebrow — pill badge</code>
+    </div>
+    <div>
+      <div style="font-family:var(--font-serif);font-size:22px;font-weight:500">h2 Subheading</div>
+      <code style="font-size:11px;color:#888">serif 22–44px weight 500</code>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SPACING ══════════════ -->
+<div class="section-head" id="sec-spacing">
+  <h2>Spacing</h2>
+  <span>Scale 4px base</span>
+</div>
+<div class="spacing-row">
+  <div class="sp-item"><div class="sp-box" style="width:4px;height:16px"></div><div class="sp-lbl">4px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:8px;height:16px"></div><div class="sp-lbl">8px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:12px;height:16px"></div><div class="sp-lbl">12px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:16px;height:16px"></div><div class="sp-lbl">16px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:20px;height:16px"></div><div class="sp-lbl">20px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:24px;height:16px"></div><div class="sp-lbl">24px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:32px;height:16px"></div><div class="sp-lbl">32px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:40px;height:16px"></div><div class="sp-lbl">40px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:48px;height:16px"></div><div class="sp-lbl">48px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:56px;height:16px"></div><div class="sp-lbl">56px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:64px;height:16px"></div><div class="sp-lbl">64px</div></div>
+  <div class="sp-item"><div class="sp-box" style="width:96px;height:16px"></div><div class="sp-lbl">96px (section)</div></div>
+</div>
+
+<div class="row" style="margin-top:24px">
+  <div>
+    <div style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600">Border Radius</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <div style="text-align:center"><div class="radius-demo" style="border-radius:4px">4px</div></div>
+      <div style="text-align:center"><div class="radius-demo" style="border-radius:var(--radius)">14px</div></div>
+      <div style="text-align:center"><div class="radius-demo" style="border-radius:var(--radius-lg)">22px</div></div>
+      <div style="text-align:center"><div class="radius-demo" style="border-radius:32px">32px</div></div>
+      <div style="text-align:center"><div class="radius-demo" style="border-radius:50%;width:80px;height:80px">50%</div></div>
+    </div>
+  </div>
+  <div>
+    <div style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600">Shadows</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div style="text-align:center"><div class="shadow-demo" style="box-shadow:var(--shadow-sm);width:90px">sm</div><div class="label">shadow-sm</div></div>
+      <div style="text-align:center"><div class="shadow-demo" style="box-shadow:var(--shadow-md);width:90px">md</div><div class="label">shadow-md</div></div>
+      <div style="text-align:center"><div class="shadow-demo" style="box-shadow:var(--shadow-lg);width:90px">lg</div><div class="label">shadow-lg</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ICONS ══════════════ -->
+<div class="section-head" id="sec-icons">
+  <h2>Icons</h2>
+  <span>icon(name, size) — SVG inline · dirender dari shared.js</span>
+</div>
+<div class="icon-grid" id="icon-grid">
+  <!-- diisi JS -->
+</div>
+
+<!-- ══════════════ BUTTONS ══════════════ -->
+<div class="section-head" id="sec-buttons">
+  <h2>Buttons</h2>
+  <span>5 varian</span>
+</div>
+<div class="row" style="align-items:center">
+  <div style="text-align:center"><button class="btn btn-primary">btn-primary</button><div class="label">.btn-primary</div></div>
+  <div style="text-align:center"><button class="btn btn-ghost">btn-ghost</button><div class="label">.btn-ghost</div></div>
+  <div style="text-align:center"><button class="btn btn-wa">btn-wa</button><div class="label">.btn-wa · #25D366</div></div>
+  <div style="text-align:center"><button class="btn btn-outline">btn-outline</button><div class="label">.btn-outline</div></div>
+  <div style="text-align:center"><button class="btn btn-primary btn-sm">btn-sm</button><div class="label">.btn-sm · padding 9/16</div></div>
+</div>
+<div style="margin-top:16px">
+  <div style="font-size:12px;color:#888;margin-bottom:8px;font-weight:600">Badges & Tags</div>
+  <div class="row" style="align-items:center;gap:8px">
+    <div style="text-align:center"><span class="badge-pill badge-pink">Bestseller</span><div class="label">badge-pink</div></div>
+    <div style="text-align:center"><span class="badge-pill badge-green">New</span><div class="label">badge-green</div></div>
+    <div style="text-align:center"><span class="badge-pill badge-cream">Premium</span><div class="label">badge-cream</div></div>
+    <div style="text-align:center"><span class="badge-pill badge-dark">Limited</span><div class="label">badge-dark</div></div>
+    <div style="text-align:center"><div class="tab-pills"><button class="tab-pill active">Semua</button><button class="tab-pill">Gambar</button><button class="tab-pill">Gantungan</button></div><div class="label">.tab-pill</div></div>
+  </div>
+</div>
+
+<!-- ══════════════ INPUTS ══════════════ -->
+<div class="section-head" id="sec-inputs">
+  <h2>Inputs</h2>
+  <span>Form controls</span>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="inp-group">
+      <label class="inp-label">Nama Kamu</label>
+      <input type="text" placeholder="Misalnya: Hanna"/>
+    </div>
+    <div class="label">input text</div>
+  </div>
+  <div class="col">
+    <div class="inp-group">
+      <label class="inp-label">Catatan / Request</label>
+      <textarea rows="3" placeholder="Cerita sedikit..."></textarea>
+    </div>
+    <div class="label">textarea</div>
+  </div>
+  <div class="col">
+    <div class="search-row">
+      <span id="ico-search-demo" style="color:var(--text-mute)"></span>
+      <input type="text" placeholder="Cari palette…"/>
+    </div>
+    <div class="label">.search-row — pill search</div>
+  </div>
+</div>
+
+<!-- ══════════════ CARDS ══════════════ -->
+<div class="section-head" id="sec-cards">
+  <h2>Cards</h2>
+  <span>Product card, Stat card, About card, Checkout bar</span>
+</div>
+<div class="row">
+  <!-- Product card -->
+  <div style="max-width:220px">
+    <div class="card">
+      <div class="card-img" id="card-art-demo"></div>
+      <div class="card-body">
+        <h3 class="card-title">Custom Family Portrait</h3>
+        <div class="card-meta">
+          <span class="card-price">Rp 185.000</span>
+          <span class="card-dur">5–7 hari</span>
+        </div>
+      </div>
+    </div>
+    <div class="label">.product-card</div>
+  </div>
+
+  <!-- Stat cards -->
+  <div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:320px">
+      <div class="stat-card"><div class="info-icon" id="ico-stat-1"></div><div class="lbl">Durasi</div><div class="val">5–7 hari</div></div>
+      <div class="stat-card"><div class="info-icon" id="ico-stat-2"></div><div class="lbl">Ukuran</div><div class="val">A4 / A5</div></div>
+      <div class="stat-card"><div class="info-icon" id="ico-stat-3"></div><div class="lbl">Teknik</div><div class="val">Watercolor</div></div>
+    </div>
+    <div class="label">.stat-card — 3 kolom di product detail</div>
+  </div>
+
+  <!-- Info rows -->
+  <div style="background:var(--cream);border-radius:var(--radius-lg);padding:20px;border:1px solid var(--line-soft);width:280px">
+    <div class="info-row">
+      <div class="info-icon" id="ico-pin-demo"></div>
+      <div><div class="info-label">Alamat</div><div class="info-value">Jl. Mawar No. 12</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" id="ico-wa-demo"></div>
+      <div><div class="info-label">WhatsApp</div><div class="info-value">+62 812-3456-7890</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon" id="ico-mail-demo"></div>
+      <div><div class="info-label">Email</div><div class="info-value">halo@galerinya-fany.id</div></div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:16px;max-width:560px">
+  <div class="checkout-bar">
+    <div><div class="count">3 produk · 2 palette</div><div class="lbl">Siap dikirim ke Bunda</div></div>
+    <button class="btn btn-wa btn-sm" id="ico-btn-wa"></button>
+  </div>
+  <div class="label">.checkout-bar — sticky bottom di favorites.html</div>
+</div>
+
+<!-- Modal preview -->
+<div style="margin-top:24px;display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
+  <div>
+    <div class="modal-demo">
+      <button style="position:absolute;top:12px;right:12px;background:none;border:none;cursor:pointer;color:var(--text-soft)" id="ico-modal-close"></button>
+      <h3>Kirim pesanan ke WhatsApp</h3>
+      <p>Bunda akan balas dalam beberapa jam kerja.</p>
+      <div style="background:var(--bg);border-radius:var(--radius);padding:12px;margin-bottom:12px;border:1px solid var(--line-soft);font-size:13px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-mute);margin-bottom:6px">Produk (1)</div>
+        <div>• Family Portrait <span style="color:var(--text-mute)">· Rp 185.000</span></div>
+      </div>
+      <div class="inp-group" style="margin-bottom:10px"><label class="inp-label">Nama Kamu</label><input type="text" placeholder="Misalnya: Hanna"/></div>
+      <button class="btn btn-wa" style="width:100%;justify-content:center" id="ico-btn-wa-modal"></button>
+    </div>
+    <div class="label">.modal — WhatsApp checkout</div>
+  </div>
+
+  <div>
+    <div class="toast-demo" id="toast-demo"></div>
+    <div class="label">.toast — notifikasi bawah layar</div>
+  </div>
+</div>
+
+<!-- ══════════════ COLOR PALETTES ══════════════ -->
+<div class="section-head" id="sec-palettes">
+  <h2>Color Palettes</h2>
+  <span>12 palette · data dari shared.js</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px" id="palette-grid">
+  <!-- diisi JS -->
+</div>
+
+<!-- ══════════════ PRODUCT ART ══════════════ -->
+<div class="section-head" id="sec-art">
+  <h2>Product Art SVG</h2>
+  <span>9 motif · productArtSVG(product, large?) dari shared.js</span>
+</div>
+<div class="art-grid" id="art-grid">
+  <!-- diisi JS -->
+</div>
+
+<!-- ══════════════ COMPONENTS ══════════════ -->
+<div class="section-head" id="sec-components">
+  <h2>Components</h2>
+  <span>Step card, FAQ, About card, Hero eyebrow</span>
+</div>
+<div class="row">
+  <!-- Step cards -->
+  <div style="display:grid;grid-template-columns:repeat(2,140px);gap:12px">
+    <div class="step-card">
+      <div class="step-num" id="ico-step-1"><div class="badge-num">1</div></div>
+      <h3 style="font-family:var(--font-serif);font-size:16px;font-weight:600;margin:0 0 6px">Pilih gambar</h3>
+      <p style="font-size:13px;color:var(--text-soft);margin:0">Pilih dari koleksi tersedia.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num" id="ico-step-2"><div class="badge-num">2</div></div>
+      <h3 style="font-family:var(--font-serif);font-size:16px;font-weight:600;margin:0 0 6px">Pilih palette</h3>
+      <p style="font-size:13px;color:var(--text-soft);margin:0">Simpan favorit warna kamu.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div style="background:var(--cream);border-radius:var(--radius-lg);padding:20px;border:1px solid var(--line-soft);min-width:280px;max-width:360px">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:12px">Pertanyaan Umum</div>
+    <div class="faq-item open" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span>Berapa lama proses pengerjaan?</span><span id="ico-faq-plus"></span></div>
+      <div class="faq-a">Rata-rata 3–10 hari kerja tergantung detail.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span>Apakah bisa revisi?</span><span id="ico-faq-plus2"></span></div>
+      <div class="faq-a">Bisa, satu kali revisi gratis di tahap sketsa.</div>
+    </div>
+  </div>
+
+  <!-- About card mini -->
+  <div class="about-card" style="max-width:320px">
+    <div class="eyebrow">Tentang Bunda</div>
+    <h2 style="font-family:var(--font-serif);font-size:26px;font-weight:500;margin:8px 0 12px;color:var(--text)">Halo, aku <em style="font-family:var(--font-script);font-style:normal;color:var(--primary-deep)">Bunda Fany</em></h2>
+    <p style="font-size:14px;color:var(--text-soft);line-height:1.7;margin:0">Mulai dari hobi iseng, sketsa-sketsa kecilku lama-lama jadi pesanan dari tetangga.</p>
+    <div style="font-family:var(--font-script);font-size:30px;color:var(--primary-deep);margin-top:16px">— Bunda Fany</div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE LAYOUTS ══════════════ -->
+<div class="section-head" id="sec-pages">
+  <h2>Page Layouts</h2>
+  <span>Grid sistem tiap halaman</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+  <!-- index.html layout -->
+  <div style="background:var(--cream);border-radius:var(--radius-lg);border:1px solid var(--line);overflow:hidden">
+    <div style="background:var(--primary-deep);color:#fff;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:0.1em">index.html — Home</div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:6px;font-size:12px">
+      <div style="background:var(--primary-soft);border-radius:6px;padding:8px 12px;color:var(--primary-deep);font-weight:600">Navbar (sticky)</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">§ hero — grid 1.05fr + 1fr</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">§ about — grid 1.3fr + 1fr (about-card)</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">§ products — product-grid 3 kolom</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">§ palettes — palette-grid 4 kolom</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">§ order — steps-grid 4 kolom</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">§ contact — grid 1.1fr + 1fr</div>
+      <div style="background:var(--bg-3);border-radius:6px;padding:8px 12px">Footer — grid 1.4fr + 1fr × 3</div>
+    </div>
+  </div>
+
+  <!-- product.html layout -->
+  <div style="background:var(--cream);border-radius:var(--radius-lg);border:1px solid var(--line);overflow:hidden">
+    <div style="background:#7BB7C5;color:#fff;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:0.1em">product.html — Detail</div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:6px;font-size:12px">
+      <div style="background:var(--primary-soft);border-radius:6px;padding:8px 12px;color:var(--primary-deep);font-weight:600">Navbar (sticky)</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">← Kembali ke koleksi</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">detail-grid: 1.1fr + 1fr</div>
+      <div style="padding:4px 12px;font-size:11px;color:#888">↳ Kiri: gambar besar + 3 thumbnail</div>
+      <div style="padding:4px 12px;font-size:11px;color:#888">↳ Kanan: tag, judul, deskripsi, stat-card ×3, palette-picker, tombol aksi</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">Rekomendasi produk (product-grid)</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">Rekomendasi palette (palette-grid)</div>
+      <div style="background:var(--bg-3);border-radius:6px;padding:8px 12px">Footer</div>
+    </div>
+  </div>
+
+  <!-- favorites.html layout -->
+  <div style="background:var(--cream);border-radius:var(--radius-lg);border:1px solid var(--line);overflow:hidden">
+    <div style="background:#9F84BF;color:#fff;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:0.1em">favorites.html — Wishlist</div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:6px;font-size:12px">
+      <div style="background:var(--primary-soft);border-radius:6px;padding:8px 12px;color:var(--primary-deep);font-weight:600">Navbar (sticky)</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">← Kembali · fav-hero (center)</div>
+      <div style="background:#E8F3E0;border-radius:6px;padding:8px 12px">Produk Favorit (product-grid)</div>
+      <div style="background:#FFF1C9;border-radius:6px;padding:8px 12px">Color Palette Favorit (palette-grid)</div>
+      <div style="background:#FCE8C0;border-radius:6px;padding:8px 12px;font-weight:600">📌 checkout-bar (sticky bottom)</div>
+      <div style="background:var(--bg-3);border-radius:6px;padding:8px 12px">Footer</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ASSET EXPORT INFO ══════════════ -->
+<div class="section-head" style="margin-top:64px">
+  <h2>Cara Export Aset</h2>
+  <span>untuk Figma / Penpot / Canva</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">
+  <div style="background:var(--cream);border-radius:var(--radius);padding:20px;border:1px solid var(--line)">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px">📋 Copy Token CSS</div>
+    <p style="font-size:13px;color:var(--text-soft)">Buka <code>styles.css</code>, copy bagian <code>:root { ... }</code> ke Figma Tokens plugin atau Style Dictionary.</p>
+  </div>
+  <div style="background:var(--cream);border-radius:var(--radius);padding:20px;border:1px solid var(--line)">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px">🖼️ Export SVG Icon</div>
+    <p style="font-size:13px;color:var(--text-soft)">Buka DevTools → pilih elemen SVG → klik kanan → Edit as HTML → copy kode SVG-nya → simpan sebagai <code>nama.svg</code>.</p>
+  </div>
+  <div style="background:var(--cream);border-radius:var(--radius);padding:20px;border:1px solid var(--line)">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px">🆓 Figma Free Tier</div>
+    <p style="font-size:13px;color:var(--text-soft)">Figma gratis untuk <strong>3 file aktif</strong>. Cukup untuk 1 project SMK. Buat akun di <a href="https://figma.com" target="_blank" style="color:var(--primary-deep)">figma.com</a>.</p>
+  </div>
+  <div style="background:var(--cream);border-radius:var(--radius);padding:20px;border:1px solid var(--line)">
+    <div style="font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:8px">🐧 Penpot (100% Gratis)</div>
+    <p style="font-size:13px;color:var(--text-soft)">Open-source, tidak ada batas file. Support import SVG & CSS tokens. Buka di <a href="https://penpot.app" target="_blank" style="color:var(--primary-deep)">penpot.app</a>.</p>
+  </div>
+</div>
+
+</div><!-- end guide-body -->
+
+<script src="shared.js"></script>
+<script>
+// Inject icons ke icon grid
+var ICON_NAMES = ['heart','heart-fill','search','whatsapp','instagram','tiktok','shopee','pin','mail','clock','paint','palette','arrow-left','arrow-right','x','plus','sparkle','package','gift','flower'];
+var gridEl = document.getElementById('icon-grid');
+gridEl.innerHTML = ICON_NAMES.map(function(n) {
+  return '<div class="icon-item" style="color:var(--primary-deep)">' +
+    icon(n, 24) + '<span>' + n + '</span>' +
+  '</div>';
+}).join('');
+
+// Inject palette cards
+var palGrid = document.getElementById('palette-grid');
+palGrid.innerHTML = PALETTES.map(function(p) {
+  var sw = p.colors.map(function(c){ return '<div class="pal-swatch" style="background:' + c + '"></div>'; }).join('');
+  return '<div class="pal-card">' +
+    '<div class="pal-swatches">' + sw + '</div>' +
+    '<div class="pal-name">' + p.name + '</div>' +
+    '<div class="pal-tag">' + p.tag + '</div>' +
+  '</div>';
+}).join('');
+
+// Inject product art grid
+var artGrid = document.getElementById('art-grid');
+artGrid.innerHTML = PRODUCTS.map(function(p) {
+  return '<div><div class="art-item">' + productArtSVG(p) + '</div>' +
+    '<div class="label">' + p.motif + '</div></div>';
+}).join('');
+
+// Inject specific icons
+document.getElementById('ico-search-demo').innerHTML = icon('search',18);
+document.getElementById('ico-stat-1').innerHTML = icon('clock',16);
+document.getElementById('ico-stat-2').innerHTML = icon('package',16);
+document.getElementById('ico-stat-3').innerHTML = icon('paint',16);
+document.getElementById('ico-pin-demo').innerHTML = icon('pin',18);
+document.getElementById('ico-wa-demo').innerHTML  = icon('whatsapp',18);
+document.getElementById('ico-mail-demo').innerHTML = icon('mail',18);
+document.getElementById('ico-btn-wa').innerHTML   = icon('whatsapp',16) + ' Kirim ke WhatsApp';
+document.getElementById('ico-btn-wa-modal').innerHTML = icon('whatsapp',16) + ' Buka WhatsApp';
+document.getElementById('ico-modal-close').innerHTML  = icon('x',16);
+document.getElementById('ico-faq-plus').innerHTML  = icon('plus',14);
+document.getElementById('ico-faq-plus2').innerHTML = icon('plus',14);
+document.getElementById('ico-step-1').innerHTML = icon('paint',28) + '<div class="badge-num">1</div>';
+document.getElementById('ico-step-2').innerHTML = icon('palette',28) + '<div class="badge-num">2</div>';
+document.getElementById('toast-demo').innerHTML = icon('heart-fill',14) + ' Ditambah ke Favorite!';
+
+// Card demo art
+document.getElementById('card-art-demo').innerHTML = productArtSVG(PRODUCTS[0]);
+
+// Logo
+document.getElementById('logo-mark') && (document.getElementById('logo-mark').innerHTML = logoSVG(36));
+</script>
+</body>
+</html>

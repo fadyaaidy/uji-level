@@ -1,0 +1,26 @@
+<svg viewBox="0 0 400 280" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="280" fill="#F5EBE0"/>
+<path d="M0 80 L400 80" stroke="#fff" stroke-width="14" opacity="0.9"/>
+<path d="M0 80 L400 80" stroke="#E0CAA8" stroke-width="14" stroke-dasharray="6 6" opacity="0.3"/>
+<path d="M0 200 L400 200" stroke="#fff" stroke-width="10" opacity="0.85"/>
+<path d="M140 0 L140 280" stroke="#fff" stroke-width="10" opacity="0.85"/>
+<path d="M280 0 L280 280" stroke="#fff" stroke-width="8" opacity="0.85"/>
+<rect x="20" y="100" width="100" height="80" fill="#D9E5C8" opacity="0.6"/>
+<rect x="160" y="100" width="100" height="80" fill="#FCE4DA" opacity="0.7"/>
+<rect x="300" y="100" width="80" height="80" fill="#D9E5C8" opacity="0.6"/>
+<rect x="20" y="220" width="100" height="50" fill="#FCE4DA" opacity="0.7"/>
+<rect x="160" y="220" width="100" height="50" fill="#D9E5C8" opacity="0.6"/>
+<g><circle cx="60" cy="50" r="6" fill="#8FBE7E"/><rect x="59" y="54" width="2" height="6" fill="#7A5240"/></g>
+<g><circle cx="200" cy="45" r="6" fill="#8FBE7E"/><rect x="199" y="49" width="2" height="6" fill="#7A5240"/></g>
+<g><circle cx="340" cy="55" r="6" fill="#8FBE7E"/><rect x="339" y="59" width="2" height="6" fill="#7A5240"/></g>
+<g><circle cx="80" cy="240" r="6" fill="#8FBE7E"/><rect x="79" y="244" width="2" height="6" fill="#7A5240"/></g>
+<g><circle cx="240" cy="245" r="6" fill="#8FBE7E"/><rect x="239" y="249" width="2" height="6" fill="#7A5240"/></g>
+<g><circle cx="350" cy="230" r="6" fill="#8FBE7E"/><rect x="349" y="234" width="2" height="6" fill="#7A5240"/></g>
+<g transform="translate(200 140)">
+  <ellipse cx="0" cy="6" rx="14" ry="4" fill="#000" opacity="0.18"/>
+  <path d="M0 -28 C-10 -28 -18 -20 -18 -10 C-18 0 0 14 0 14 C0 14 18 0 18 -10 C18 -20 10 -28 0 -28 Z" fill="#C66B85"/>
+  <circle cx="0" cy="-12" r="6" fill="#FFFBF5"/>
+  <circle cx="0" cy="-12" r="3" fill="#C66B85"/>
+</g>
+<text x="200" y="158" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="14" font-weight="600" fill="#4C2A36">Workshop Bunda</text>
+</svg>

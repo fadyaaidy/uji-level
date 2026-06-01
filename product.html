@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Detail Produk — Galerinya Fany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="side-garden left"><img src="images/decorations/side-garden.svg" style="width:100%;height:100%" alt=""></div>
+<div class="side-garden right"><img src="images/decorations/side-garden.svg" style="width:100%;height:100%" alt=""></div>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.svg" width="40" height="40" alt="logo">
+      <div>
+        <div class="logo-text">Galerinya Fany</div>
+        <div class="logo-sub">handmade · with love</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html#home">Home</a>
+      <a class="nav-link" href="index.html#about">About</a>
+      <a class="nav-link active" href="index.html#products">Products</a>
+      <a class="nav-link" href="index.html#palettes">Palettes</a>
+      <a class="nav-link" href="index.html#order">How to Order</a>
+      <a class="nav-link" href="index.html#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <div style="position:relative">
+        <button class="icon-btn" id="search-btn" aria-label="Cari palette"></button>
+        <div class="search-pop" id="search-pop" style="display:none" onclick="event.stopPropagation()">
+          <input type="text" id="search-input" placeholder="Cari color palette…"/>
+          <div class="search-pop-hint">Tekan Enter untuk cari</div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" id="fav-btn" aria-label="Favorit" style="position:relative">
+        <span class="badge" id="fav-badge" style="display:none">0</span>
+      </a>
+      <a href="index.html#order" class="btn btn-primary btn-sm">Pesan Sekarang</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════ KONTEN DETAIL ═══════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div id="detail-content">
+      <!-- Diisi oleh JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div style="position:absolute;top:0;left:0;right:0"><img src="images/decorations/floral-border.svg" style="width:100%;display:block" alt=""></div>
+  <div class="wrap" style="position:relative">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="cursor:default">
+          <img src="images/logo.svg" width="42" height="42" alt="logo">
+          <div><div class="logo-text">Galerinya Fany</div><div class="logo-sub">handmade · with love</div></div>
+        </div>
+        <p class="footer-tag">Studio gambar tangan dan kerajinan kecil, dikerjakan langsung oleh Bunda di Bekasi.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram" id="ft-ig"></a>
+          <a href="#" aria-label="TikTok" id="ft-tt"></a>
+          <a href="#" aria-label="Shopee" id="ft-sp"></a>
+          <a href="#" aria-label="WhatsApp" id="ft-wa"></a>
+        </div>
+      </div>
+      <div>
+        <h4>Galerinya</h4>
+        <ul>
+          <li><a href="index.html#about">Tentang Bunda</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="index.html#palettes">Color Palettes</a></li>
+          <li><a href="favorites.html">Favorites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Layanan</h4>
+        <ul>
+          <li><a href="index.html#order">Cara Pesan</a></li>
+          <li><a href="#">Custom Order</a></li>
+          <li><a href="#">Wedding Gift</a></li>
+          <li><a href="#">Birthday Package</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bantuan</h4>
+        <ul>
+          <li><a href="index.html#contact">Kontak &amp; FAQ</a></li>
+          <li><a href="index.html#contact">Cara Pembayaran</a></li>
+          <li><a href="#">Pengiriman</a></li>
+          <li><a href="#">Kebijakan Revisi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Galerinya Fany · Made with 🤍 in Bekasi</div>
+      <div>Workshop: Jl. Mawar No. 12, Bekasi Timur</div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ──────────────────────────────────────────────────────────
+//  Halaman Detail Produk — product.html
+//  Membaca ?id=... dari URL lalu merender konten
+// ──────────────────────────────────────────────────────────
+
+var selectedPaletteId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+  initNavCommon();
+
+  // Footer social icons
+  document.getElementById('ft-ig').innerHTML = icon('instagram',18);
+  document.getElementById('ft-tt').innerHTML = icon('tiktok',18);
+  document.getElementById('ft-sp').innerHTML = icon('shopee',18);
+  document.getElementById('ft-wa').innerHTML = icon('whatsapp',18);
+
+  // Search → ke index.html?q=...
+  var si = document.getElementById('search-input');
+  if (si) si.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && si.value.trim()) {
+      window.location.href = 'index.html?q=' + encodeURIComponent(si.value.trim()) + '#palettes';
+    }
+  });
+
+  // Baca id produk dari URL
+  var params = new URLSearchParams(window.location.search);
+  var productId = params.get('id');
+  renderProductDetail(productId);
+});
+
+// ── Render halaman detail berdasarkan productId ──
+function renderProductDetail(productId) {
+  var product = PRODUCTS.find(function(p){ return p.id === productId; });
+  var container = document.getElementById('detail-content');
+
+  if (!product) {
+    container.innerHTML =
+      '<a href="index.html#products" class="detail-back">' + icon('arrow-left',16) + ' Kembali ke koleksi</a>' +
+      '<p>Produk tidak ditemukan.</p>';
+    return;
+  }
+
+  // Set judul halaman browser
+  document.title = product.title + ' — Galerinya Fany';
+
+  var favs = loadFavs();
+  var isFav = favs.products.indexOf(product.id) !== -1;
+
+  // Palette yang direkomendasikan untuk produk ini
+  var recPalettes = product.paletteRecs
+    .map(function(id){ return PALETTES.find(function(p){ return p.id === id; }); })
+    .filter(Boolean);
+
+  selectedPaletteId = recPalettes.length > 0 ? recPalettes[0].id : null;
+
+  // Produk yang direkomendasikan
+  var recProducts = product.recs
+    .map(function(id){ return PRODUCTS.find(function(p){ return p.id === id; }); })
+    .filter(Boolean);
+
+  // ── Thumbnail: tampil 3 kali produk yang sama sebagai placeholder ──
+  var thumbsHTML = [product, product, product].map(function(p, i) {
+    return '<div class="detail-thumb' + (i === 0 ? ' active' : '') + '" onclick="switchThumb(this)">' +
+      productArtSVG(p) + '</div>';
+  }).join('');
+
+  // ── Stats ──
+  var statsHTML =
+    '<div class="stat-card"><div class="info-icon">' + icon('clock',16) + '</div><div class="lbl">Durasi</div><div class="val">' + product.duration + '</div></div>' +
+    '<div class="stat-card"><div class="info-icon">' + icon('package',16) + '</div><div class="lbl">Ukuran</div><div class="val">' + product.paper + '</div></div>' +
+    '<div class="stat-card"><div class="info-icon">' + icon('paint',16) + '</div><div class="lbl">Teknik</div><div class="val">' + product.style + '</div></div>';
+
+  // ── Palette picker ──
+  var palettePickHTML = recPalettes.map(function(pl) {
+    var swatches = pl.colors.map(function(c){ return '<span style="background:' + c + '"></span>'; }).join('');
+    return '<button class="palette-pick' + (pl.id === selectedPaletteId ? ' selected' : '') + '" onclick="selectPalette(\'' + pl.id + '\')">' +
+      '<span class="palette-pick-swatches">' + swatches + '</span>' +
+      '<span><div class="palette-pick-name">' + pl.name + '</div><div class="palette-pick-tag">' + pl.tag + '</div></span>' +
+    '</button>';
+  }).join('');
+
+  // ── Rekomendasi produk ──
+  var recProductsHTML = recProducts.map(function(p) {
+    var fav = favs.products.indexOf(p.id) !== -1;
+    return '<article class="product-card" onclick="window.location.href=\'product.html?id=' + p.id + '\'">' +
+      '<div class="product-img">' +
+        productArtSVG(p) +
+        '<div class="product-tag">' + p.tag + '</div>' +
+        '<button class="product-fav' + (fav ? ' is-fav' : '') + '" onclick="toggleProductFavHere(event,\'' + p.id + '\')" aria-label="Favorit">' +
+          icon(fav ? 'heart-fill' : 'heart', 18) +
+        '</button>' +
+      '</div>' +
+      '<div class="product-body">' +
+        '<h3 class="product-title">' + p.title + '</h3>' +
+        '<div class="product-meta">' +
+          '<span class="product-price">' + p.price + '</span>' +
+          '<span class="product-duration">' + icon('clock',12) + ' ' + p.duration + '</span>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+
+  // ── Rekomendasi palette ──
+  var recPalettesHTML = recPalettes.map(function(pl) {
+    var fav = favs.palettes.indexOf(pl.id) !== -1;
+    var swatches = pl.colors.map(function(c){ return '<div class="palette-swatch" style="background:' + c + '"></div>'; }).join('');
+    return '<div class="palette-card">' +
+      '<button class="palette-fav' + (fav ? ' is-fav' : '') + '" onclick="togglePaletteFavHere(event,\'' + pl.id + '\')" aria-label="Simpan">' +
+        icon(fav ? 'heart-fill' : 'heart', 18) +
+      '</button>' +
+      '<div class="palette-swatches">' + swatches + '</div>' +
+      '<div class="palette-name">' + pl.name + '</div>' +
+      '<div class="palette-tag">' + pl.tag + '</div>' +
+    '</div>';
+  }).join('');
+
+  // ── Gabungkan semua HTML ──
+  container.innerHTML =
+    '<a href="index.html#products" class="detail-back">' + icon('arrow-left',16) + ' Kembali ke koleksi</a>' +
+
+    '<div class="detail-grid">' +
+      // Kolom kiri: gambar + thumbnail
+      '<div>' +
+        '<div class="detail-img" id="main-img">' + productArtSVG(product, true) + '</div>' +
+        '<div class="detail-thumbs">' + thumbsHTML + '</div>' +
+      '</div>' +
+      // Kolom kanan: info
+      '<div class="detail-info">' +
+        '<span class="detail-tag">' + product.tag + ' · ' + (product.category === 'drawing' ? 'Gambar Tangan' : 'Gantungan Kunci') + '</span>' +
+        '<h1>' + product.title + '</h1>' +
+        '<p class="detail-desc">' + product.description + '</p>' +
+        '<p class="detail-desc" style="margin-bottom:0">' + product.longDesc + '</p>' +
+        '<div class="detail-stats" style="margin-top:28px">' + statsHTML + '</div>' +
+        '<div class="palette-picker" id="palette-picker">' +
+          '<h3><span>' + icon('palette',18) + ' Pilih Color Palette</span><span style="font-size:18px;color:var(--primary-deep)">' + product.price + '</span></h3>' +
+          '<p>Pilihan terbaik untuk ' + product.title.toLowerCase() + ' — pilih satu favoritmu.</p>' +
+          '<div class="palette-picker-options" id="palette-options">' + palettePickHTML + '</div>' +
+        '</div>' +
+        '<div class="detail-actions">' +
+          '<button class="btn btn-ghost' + (isFav ? ' is-fav-btn' : '') + '" id="fav-toggle-btn" onclick="toggleDetailFav(\'' + product.id + '\')" style="' + (isFav ? 'border-color:#E04A6E;color:#E04A6E' : '') + '">' +
+            icon(isFav ? 'heart-fill' : 'heart', 16) +
+            '<span id="fav-toggle-label">' + (isFav ? 'Tersimpan' : 'Save Favorite') + '</span>' +
+          '</button>' +
+          '<button class="btn btn-wa" id="pesan-btn" onclick="pesanViaWA()">' +
+            icon('whatsapp',16) + ' Pesan via WhatsApp' +
+          '</button>' +
+        '</div>' +
+        '<p style="font-size:12px;color:var(--text-mute);margin-top:14px;margin-bottom:0">💡 Tip: kalau mau bandingkan banyak gambar dan palette, save dulu beberapa — checkout sekaligus di halaman <a href="favorites.html" style="color:var(--primary-deep)">Favorite</a>.</p>' +
+      '</div>' +
+    '</div>' +
+
+    // Rekomendasi produk
+    '<div class="recs-block">' +
+      '<div class="center" style="margin-bottom:32px">' +
+        '<div class="eyebrow">Rekomendasi</div>' +
+        '<h2 class="section-title" style="font-size:36px">Mungkin kamu <em>juga suka</em></h2>' +
+      '</div>' +
+      '<div class="product-grid">' + recProductsHTML + '</div>' +
+    '</div>' +
+
+    // Rekomendasi palette
+    '<div class="recs-block">' +
+      '<div class="center" style="margin-bottom:32px">' +
+        '<div class="eyebrow">Color Inspiration</div>' +
+        '<h2 class="section-title" style="font-size:36px">Palette <em>cocok</em> untuk gambar ini</h2>' +
+      '</div>' +
+      '<div class="palette-grid">' + recPalettesHTML + '</div>' +
+    '</div>';
+}
+
+// ── Pilih palette ──
+function selectPalette(id) {
+  selectedPaletteId = id;
+  document.querySelectorAll('.palette-pick').forEach(function(btn) {
+    btn.classList.toggle('selected', btn.onclick.toString().includes('\'' + id + '\''));
+  });
+  // Re-render palette options agar highlight baru
+  var params = new URLSearchParams(window.location.search);
+  var product = PRODUCTS.find(function(p){ return p.id === params.get('id'); });
+  if (!product) return;
+  var recPalettes = product.paletteRecs.map(function(rid){ return PALETTES.find(function(p){ return p.id === rid; }); }).filter(Boolean);
+  document.getElementById('palette-options').innerHTML = recPalettes.map(function(pl) {
+    var swatches = pl.colors.map(function(c){ return '<span style="background:' + c + '"></span>'; }).join('');
+    return '<button class="palette-pick' + (pl.id === id ? ' selected' : '') + '" onclick="selectPalette(\'' + pl.id + '\')">' +
+      '<span class="palette-pick-swatches">' + swatches + '</span>' +
+      '<span><div class="palette-pick-name">' + pl.name + '</div><div class="palette-pick-tag">' + pl.tag + '</div></span>' +
+    '</button>';
+  }).join('');
+}
+
+// ── Klik thumbnail ──
+function switchThumb(el) {
+  document.querySelectorAll('.detail-thumb').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+// ── Toggle favorit dari halaman detail ──
+function toggleDetailFav(id) {
+  var isNow = toggleFav('products', id);
+  showToast(isNow ? '❤️ Ditambah ke Favorite!' : 'Dihapus dari Favorite.');
+  updateFavBadge();
+  var btn   = document.getElementById('fav-toggle-btn');
+  var label = document.getElementById('fav-toggle-label');
+  if (btn && label) {
+    btn.style.borderColor = isNow ? '#E04A6E' : '';
+    btn.style.color       = isNow ? '#E04A6E' : '';
+    btn.querySelector('svg').outerHTML; // refresh
+    btn.innerHTML = icon(isNow ? 'heart-fill' : 'heart', 16) + '<span id="fav-toggle-label">' + (isNow ? 'Tersimpan' : 'Save Favorite') + '</span>';
+    btn.setAttribute('onclick', 'toggleDetailFav(\'' + id + '\')');
+  }
+}
+
+function toggleProductFavHere(e, id) {
+  e.stopPropagation();
+  var isNow = toggleFav('products', id);
+  showToast(isNow ? '❤️ Ditambah ke Favorite!' : 'Dihapus dari Favorite.');
+  updateFavBadge();
+  // Re-render rec section
+  var params = new URLSearchParams(window.location.search);
+  renderProductDetail(params.get('id'));
+}
+
+function togglePaletteFavHere(e, id) {
+  e.stopPropagation();
+  var isNow = toggleFav('palettes', id);
+  showToast(isNow ? '🎨 Palette disimpan!' : 'Palette dihapus dari Favorite.');
+  updateFavBadge();
+  var params = new URLSearchParams(window.location.search);
+  renderProductDetail(params.get('id'));
+}
+
+// ── Buka modal WA ──
+function pesanViaWA() {
+  var params  = new URLSearchParams(window.location.search);
+  var product = PRODUCTS.find(function(p){ return p.id === params.get('id'); });
+  var palette = PALETTES.find(function(p){ return p.id === selectedPaletteId; });
+  openWhatsApp({ defaultProduct: product, defaultPalette: palette });
+}
+</script>
+</body>
+</html>
